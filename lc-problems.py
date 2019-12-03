@@ -102,7 +102,104 @@ class Solution:
                     numswaps += 1
             if numswaps == 0:
                 finished = True
-        return len(nums) - nums.count(val)        
+        return len(nums) - nums.count(val)     
+
+
+# Length of last word - easy
+class Solution:
+    def lengthOfLastWord(self, s: str) -> int:
+        if len(s) == 0 or s.isspace() == True:
+            return 0
+        else:
+            result = list()
+            sprime = s.split(' ')
+            for item in sprime:
+                if len(item) > 0:
+                    result.append(item)
+            return len(result[-1])        
+
+""" Result:
+Success
+Details
+Runtime: 28 ms, faster than 87.24 - % of Python3 online submissions for Length of Last Word.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Length of Last Word.    """
+
+
+# Plus one - easy
+
+class Solution:
+    def plusOne(self, digits: List[int]) -> List[int]:
+        lprime = digits[::-1]
+        mult = 1
+        sum = 0
+        for item in lprime:
+            sum += item*mult
+            mult = mult*10
+        
+        sum += 1
+        
+        sumst = str(sum)
+        result = list()
+        for item in sumst:
+            result.append(item)
+            
+        return result    
+
+""" Result:
+Success
+Details
+Runtime: 32 ms, faster than 85.45% of Python3 online submissions for Plus One.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Plus One. """
+
+
+# Sqrt(x) - easy ... (OK. Too easy.)
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        stage1 = math.sqrt(x)
+        return int(stage1)
+
+""" Result:
+Success
+Details
+Runtime: 28 ms, faster than 97.01% of Python3 online submissions for Sqrt(x).
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Sqrt(x).
+ """
+
+# Remove duplicates from sorted linked list. - easy
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def deleteDuplicates(self, head: ListNode) -> ListNode:
+        if head:
+            mine = ListNode(head.val)       
+            mt = mine
+
+            mark = head.val
+            ht = head
+            while ht.next:
+                if not ht.next.val == None and not ht.next.val == mark:
+                    temp = ListNode(ht.next.val)
+                    mt.next = temp
+                    mt = mt.next
+                    mark = ht.next.val
+                ht = ht.next                 
+
+            return mine
+        else:
+            return None
+                
+""" Result:
+Success
+Details
+Runtime: 48 ms, faster than 57.48% of Python3 online submissions for Remove Duplicates from Sorted List.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Remove Duplicates from Sorted List.   """              
+
+
+
     
 
 
