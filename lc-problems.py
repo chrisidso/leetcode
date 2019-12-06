@@ -199,7 +199,61 @@ Runtime: 48 ms, faster than 57.48% of Python3 online submissions for Remove Dupl
 Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Remove Duplicates from Sorted List.   """              
 
 
+# Merge sorted array - Easy
 
+class Solution:
+    def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+        """
+        Do not return anything, modify nums1 in-place instead.
+        """
+        
+        for i in range(n):
+            nums1[m+i] = nums2[i]
+        
+        maxlength = m+n-1
+        finished = False
+        while not finished:
+            numswaps = 0
+            
+            for i in range(maxlength):
+                if nums1[i] > nums1[i+1]:
+                    temp = nums1[i]
+                    nums1[i] = nums1[i+1]
+                    nums1[i+1] = temp
+                    numswaps += 1   
+                    
+            if numswaps == 0:
+                finished = True
+
+### Result:
+Runtime: 48 ms, faster than 30.75% of Python3 online submissions for Merge Sorted Array.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Merge Sorted Array.###
+
+
+# Valid-palindrome
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+
+        result = False
+        if s == "":
+            return True
+        temp = ""
+        teststr = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        for i in s:
+            if i in teststr:
+                temp = temp + i.lower()
+        
+        if temp == "":
+            return True
+        
+        rev = temp[::-1]
+        if temp == rev:
+            result = True
+        return result    
+
+
+### Result: Incorrect solution.  Had a problem with padding using zeros. ###
+        
     
 
 
