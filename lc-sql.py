@@ -42,5 +42,27 @@ Runtime: 505 ms, faster than 5.10% of MySQL online submissions for Not Boring Mo
 Memory Usage: 0B, less than 100.00% of MySQL online submissions for Not Boring Movies.
 
 
+# Employees Earning More Than Their Managers - Easy
+select emp.Name as Employee from Employee emp
+    where emp.Salary > (select Salary from Employee where Id = emp.ManagerId)
+
+""" Results: Success 
+Details:  
+Runtime: 953 ms, faster than 5.06% of MySQL online submissions for Employees Earning More Than Their Managers.
+Memory Usage: 0B, less than 100.00% of MySQL online submissions for Employees Earning More Than Their Managers.    
+"""
+
+# Customers Who Never Order
+select cust.Name as Customers
+    from Customers cust
+    where cust.Id not in (select CustomerId from Orders)
+
+"""
+Success
+Details
+Runtime: 694 ms, faster than 21.67% of MySQL online submissions for Customers Who Never Order.
+Memory Usage: 0B, less than 100.00% of MySQL online submissions for Customers Who Never Order.
+"""    
+
 
 
