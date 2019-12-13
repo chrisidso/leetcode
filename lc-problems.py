@@ -253,6 +253,51 @@ class Solution:
 
 
 ### Result: Incorrect solution.  Had a problem with padding using zeros. ###
+
+# Add two numbers - medium
+
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
+
+class Solution:
+    def turnListIntoString(self, a1: ListNode) -> str:
+        result = ""
+        while a1:
+            result = result + str(a1.val)
+            a1 = a1.next
+        return result
+    
+    def turnStringIntoList(self, s1: str) -> ListNode:        
+        for i,item in enumerate(s1):
+            if i==0:
+                l = ListNode(item)
+                lprime = l
+            else:    
+                l.next = ListNode(item)
+                l = l.next            
+        return lprime              
+    
+    def addTwoNumbers(self, l1: ListNode, l2: ListNode) -> ListNode:        
+        s1 = self.turnListIntoString(l1)
+        s2 = self.turnListIntoString(l2)
+        sprime1 = s1[::-1]
+        sprime2 = s2[::-1]
+        total = int(sprime1) + int(sprime2)        
+        t1 = str(total)            
+        tprime1 = t1[::-1]
+        result = self.turnStringIntoList(tprime1)
+        return result
+        
+
+"""
+Success
+Details
+Runtime: 64 ms, faster than 92.80% of Python3 online submissions for Add Two Numbers.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Add Two Numbers.
+"""
         
     
 
