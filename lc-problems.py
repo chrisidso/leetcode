@@ -298,7 +298,56 @@ Details
 Runtime: 64 ms, faster than 92.80% of Python3 online submissions for Add Two Numbers.
 Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Add Two Numbers.
 """
+
+# Longest palindrome - medium
+class Solution:
+    
+    def llSubstrings(self, s: str) -> list:
+        result = list()
+        if len(s) == 0:
+            return result
+        if len(s) == 1:
+            result.append(s)
+            return result
+        if self.testForPal(s):
+            result.append(s)
+            return result
+        else:                   
+            for i in range(1, len(s)):
+                numsubs = len(s) + 1 - i
+                for j in range(numsubs):
+                    tend = j + i
+                    result.append(s[j:tend])            
+        return result
+    
+    def testForPal(self, s: str) -> bool:
+        result = False        
+        sprime = s[::-1]
+        if s == sprime:
+            result = True
+        return result
+    
+    def longestPalindrome(self, s: str) -> str:
+        result = ""
+        length = 0
+        subs = self.llSubstrings(s)
+        if len(subs) == 0:
+            return ""
+        if len(subs) == 1:
+            return subs[0]
+        else:
+            for item in subs:
+                if self.testForPal(item):
+                    if len(item) > length:
+                        length = len(item)
+                        result = item
+        return result                
         
+"""
+Success
+Details
+Runtime: 6652 ms, faster than 11.93% of Python3 online submissions for Longest Palindromic Substring.
+Memory Usage: 213.1 MB, less than 5.04% of Python3 online submissions for Longest Palindromic Substring.       
     
 
 
