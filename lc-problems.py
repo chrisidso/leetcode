@@ -348,7 +348,47 @@ Success
 Details
 Runtime: 6652 ms, faster than 11.93% of Python3 online submissions for Longest Palindromic Substring.
 Memory Usage: 213.1 MB, less than 5.04% of Python3 online submissions for Longest Palindromic Substring.       
-    
+"""    
 
+# Problem - Merge two sorted lists - easy.
+# Definition for singly-linked list.
+# class ListNode:
+#     def __init__(self, x):
+#         self.val = x
+#         self.next = None
 
+class Solution:
+    def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
+        if l1 == None:
+            return l2
+        if not l1 == None and l2 == None:
+            return l1       
+        
+        t1 = l1
+        while not t1 == None:
+            v1 = t1.val
+            t2 = l2
+            j1 = ListNode(v1)
+            m1 = None
+            while not t2 == None and t2.val <= v1:
+                m1 = t2
+                t2 = t2.next
+            if m1 == None:
+                # nothing happened - need to prepend
+                m1 = j1
+                m1.next = t2
+                l2 = m1
+            if not m1 == None and t2 == None: 
+                # need to append
+                m1.next = j1
+            if not m1 == None and not t2 == None:     
+                # insert between m1 and t2                
+                j1.next = t2                
+                m1.next = j1                           
+            
+            t1 = t1.next
+        return l2 
+
+""" Memory limit exceeded.  My code worked for the example, but failed when submitted. """  
+        
 
