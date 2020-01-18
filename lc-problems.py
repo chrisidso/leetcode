@@ -390,5 +390,112 @@ class Solution:
         return l2 
 
 """ Memory limit exceeded.  My code worked for the example, but failed when submitted. """  
-        
+
+#  Problem:  powx-n - medium
+class Solution:
+    def myPow(self, x: float, n: int) -> float:
+        i = 2**31
+        if x > -100 and x < 100:
+            if n >= -i and n <= i-1:
+                return x**n
+        return 0    
+
+"""   Success
+Details
+Runtime: 24 ms, faster than 86.97% of Python3 online submissions for Pow(x, n).
+Memory Usage: 12.8 MB, less than 100.00% of Python3 online submissions for Pow(x, n).
+"""
+
+# Problem:  Valid Sudoku - medium
+class Solution:
+    def condenseRow(self, row: List[str]) -> list:
+        result = list()
+        v = "123456789"
+        for i in range(len(row)):
+            if row[i] in v:
+                result.append(row[i])
+        return result
+    
+    def checkForDupes(self, l: List[str]) -> bool:        
+        s = set(l)        
+        if len(s) == len(l):
+            return True
+        else:
+            return False
+                      
+    def condenseCol(self, b: List[List[str]], c: int) -> list:
+        result = list()
+        v = "123456789"
+        for i in range(9):
+            if b[i][c] in v:
+                result.append(b[i][c]) 
+        return result  
+                      
+    def condenseBox(self, b: List[List[str]], r: int, c: int) -> list:                  
+        result = list()
+        v = "123456789"
+        rb = r*3
+        re = rb+3
+        cb = c*3
+        ce = cb+3        
+        for i in range(rb,re):
+            for j in range(cb,ce):
+                if b[i][j] in v:
+                    result.append(b[i][j])
+        return result            
+    
+    def isValidSudoku(self, board: List[List[str]]) -> bool:
+        result = True
+        for i in range(9):
+            cr = self.condenseRow(board[i])            
+            b = self.checkForDupes(cr)
+            if b == False:
+                result = False
+        for i in range(9):
+            cc = self.condenseCol(board, i)            
+            b = self.checkForDupes(cc)
+            if b == False:
+                result = False
+        for i in range(3):
+            for j in range(3):                
+                cb = self.condenseBox(board, i, j)                
+                b =  self.checkForDupes(cb)
+                if b == False:
+                    result = False
+                    
+        return result              
+
+""" Result:   Success
+Details
+Runtime: 112 ms, faster than 16.81% of Python3 online submissions for Valid Sudoku.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Valid Sudoku.
+"""
+
+# Problem - Find First and Last Position of Element in Sorted Array - Medium
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        nf = [-1, -1]
+        if not target in nums:
+            return nf
+        else:            
+            last = None
+            first = nums.index(target)
+            l = len(nums) - 1
+            if first == len(nums) - 1:
+                return [first, first]
+            if nums[l] == target:
+                return [first, l]
+            
+            i = 1               
+            while not target + i in nums:
+                i += 1
+            last = nums.index(target + i) - 1
+            return [first, last]    
+
+"""    
+Success
+Details
+Runtime: 92 ms, faster than 34.06% of Python3 online submissions for Find First and Last Position of Element in Sorted Array.
+Memory Usage: 14.1 MB, less than 5.36% of Python3 online submissions for Find First and Last Position of Element in Sorted Array.                
+"""        
 
