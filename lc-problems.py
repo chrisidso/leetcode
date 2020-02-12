@@ -497,5 +497,96 @@ Success
 Details
 Runtime: 92 ms, faster than 34.06% of Python3 online submissions for Find First and Last Position of Element in Sorted Array.
 Memory Usage: 14.1 MB, less than 5.36% of Python3 online submissions for Find First and Last Position of Element in Sorted Array.                
-"""        
+"""  
+
+#Problem:  Multiply strings
+
+class Solution:
+    def convStrToNum(self, n: str) -> int:
+        result = 0
+        nprime = n[::-1]
+        e = 0
+        for item in nprime:
+            result += int(item) * (10**e)
+            e += 1
+        return result    
+            
+    def remZero(self, n: str) -> str:
+        result = ""
+        for i, item in enumerate(n):
+            if not item == "0":
+                result = n[i:]
+                break
+        return result
+    
+    def valNum(self, x: str) -> int:
+        result = 0
+        if not x == "":
+            z = self.remZero(x)
+            if not z == "":
+                result = self.convStrToNum(z)
+        return result        
+    
+    def multiply(self, num1: str, num2: str) -> str:
+        n1 = self.valNum(num1)
+        n2 = self.valNum(num2)
+        prod = n1*n2
+        res = str(prod)        
+        return res
+
+"""
+ Success
+Details
+Runtime: 76 ms, faster than 55.71% of Python3 online submissions for Multiply Strings.
+Memory Usage: 12.6 MB, less than 100.00% of Python3 online submissions for Multiply Strings.
+""" 
+
+# Problem - Sort Colors
+class Solution:
+    def sortColors(self, nums: List[int]) -> None:
+        """
+        Do not return anything, modify nums in-place instead.
+        """
+        
+        if len(nums) > 1:
+            i = 0
+            place = 0        
+            while i < len(nums):
+                if nums[i] > 0:
+                    place = i
+                    break
+                i+= 1
+            i = place    
+            while i < len(nums):
+                if nums[i] == 0:
+                    if i > place:
+                        if not nums[i] == nums[place]: 
+                            temp = nums[place]
+                            nums[place] = nums[i]
+                            nums[i] = temp
+                            place += 1
+                i += 1
+            j = place    
+            while j < len(nums):
+                if nums[j] > 1:
+                    place = j
+                    break
+                j += 1    
+            i = place
+            while i < len(nums):
+                if nums[i] == 1:
+                    if i > place:
+                        if nums[i] < nums[place]:
+                            temp = nums[place]
+                            nums[place] = nums[i]
+                            nums[i] = temp
+                            place += 1
+                i += 1
+                
+"""  Results:
+Success
+Details
+Runtime: 32 ms, faster than 61.26% of Python3 online submissions for Sort Colors.
+Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Sort Colors.
+"""                
 
