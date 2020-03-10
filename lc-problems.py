@@ -588,5 +588,44 @@ Success
 Details
 Runtime: 32 ms, faster than 61.26% of Python3 online submissions for Sort Colors.
 Memory Usage: 12.7 MB, less than 100.00% of Python3 online submissions for Sort Colors.
-"""                
+"""
+
+# Problem - Set Matrix Zeros - medium
+class Solution:
+    def setZeroes(self, matrix: List[List[int]]) -> None:
+        """
+        Do not return anything, modify matrix in-place instead.
+        """
+        # Identify rows and columns to set to zero
+        rowstoreset = list()
+        colstoreset = list()        
+        
+        if not matrix == None: 
+            h = len(matrix)
+            if not len(matrix[0]) == None:
+                w = len(matrix[0])
+                
+                for i in range(h):
+                    for j in range(w):
+                        if matrix[i][j] == 0:
+                            if not i in rowstoreset:
+                                rowstoreset.append(i)
+                            if not j in colstoreset:
+                                colstoreset.append(j)
+                                
+                # reset rows
+                for i in rowstoreset:
+                    for j in range(w):
+                        matrix[i][j] = 0
+                
+                # reset cols
+                for i in range(h):
+                    for j in colstoreset:
+                        matrix[i][j] = 0
+
+""" Results:
+           Success
+Details
+Runtime: 132 ms, faster than 88.40% of Python3 online submissions for Set Matrix Zeroes.
+Memory Usage: 13.3 MB, less than 97.44% of Python3 online submissions for Set Matrix Zeroes."""            
 
