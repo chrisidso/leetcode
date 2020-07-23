@@ -629,3 +629,78 @@ Details
 Runtime: 132 ms, faster than 88.40% of Python3 online submissions for Set Matrix Zeroes.
 Memory Usage: 13.3 MB, less than 97.44% of Python3 online submissions for Set Matrix Zeroes."""            
 
+
+# Problem - Compare version numbers - medium
+class Solution:   
+    def compareVersion(self, version1: str, version2: str) -> int:
+        v1 = version1.split('.')
+        v2 = version2.split('.')
+        
+        l1 = len(v1)
+        l2 = len(v2)
+        
+        if l1 <= l2:
+            shortest = v1
+            longest = v2
+        else:
+            shortest = v2
+            longest = v1       
+        
+        for i in range(len(shortest)):
+            if int(v1[i]) < int(v2[i]):                
+                return -1
+            elif int(v1[i]) > int(v2[i]):                
+                return 1
+            else:
+                pass
+            
+        # Did not return yet.  
+        start = i+1
+        if l1 > start:            
+            for j in range(start, l1):
+                if not int(v1[j]) == 0:                    
+                    return 1
+                     
+        if l2 > start:
+            for j in range(start, l2):
+                if not int(v2[j]) == 0:                    
+                    return -1   
+        
+        # Still did not return
+        return 0   
+
+""" Results:
+Runtime: 32 ms, faster than 59.62% of Python3 online submissions for Compare Version Numbers.
+Memory Usage: 14 MB, less than 15.33% of Python3 online submissions for Compare Version Numbers.        
+"""
+
+# Problem - DNA Sequences- medium
+class Solution:
+    def find_all(self,a_string, sub):
+        result = []
+        k = 0
+        while k < len(a_string):
+            k = a_string.find(sub, k)
+            if k == -1:
+                return result
+            else:
+                result.append(k)
+                k += 1 #change to k += len(sub) to not search overlapping results
+        return result
+    
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:        
+        appearsmult = list()
+        
+        end = len(s) - 9
+        for i in range(end):            
+            ss = s[i:i+10]
+            f = Solution.find_all(self,s,ss)
+            if len(f) >=2:
+                if not ss in appearsmult:
+                    appearsmult.append(ss)
+        
+        return appearsmult
+
+""" Results:  Ran in 32 milliseconds for the example.  But when submitted, it exceeded the
+time limit."""        
+                
