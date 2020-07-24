@@ -702,5 +702,54 @@ class Solution:
         return appearsmult
 
 """ Results:  Ran in 32 milliseconds for the example.  But when submitted, it exceeded the
-time limit."""        
-                
+time limit."""    
+
+# Problem - Reverse words in a string
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        # remove leading and trailing spaces
+        s1 = s.strip()
+        
+        # split the string into words
+        s2 = s1.split(' ')
+        
+        s3 = list()
+        for i in range(len(s2)):
+            if not s2[i] == '':
+                s3.append(s2[i])
+            
+        s3.reverse()    
+            
+        # put string back together\
+        return ' '.join(s3)
+
+""" Results:
+Success
+Details
+Runtime: 24 ms, faster than 97.19% of Python3 online submissions for Reverse Words in a String.
+Memory Usage: 14.4 MB, less than 50.40% of Python3 online submissions for Reverse Words in a String.        
+"""
+
+# Problem - Find Peak Element - medium
+class Solution:
+    def findPeakElement(self, nums: List[int]) -> int:
+        for i in range(len(nums)):
+            if len(nums) == 1:
+                return 0            
+            elif i == 0:
+                if nums[i] > nums[i+1]:
+                    return i
+            elif i == len(nums) -1:
+                if nums[i] > nums[i-1]:
+                    return i
+            else:
+                if nums[i] > nums[i-1] and nums[i] > nums[i+1]:
+                    return i
+
+""" 
+Results:    
+Success
+Details
+Runtime: 44 ms, faster than 85.00% of Python3 online submissions for Find Peak Element.
+Memory Usage: 13.7 MB, less than 97.65% of Python3 online submissions for Find Peak Element.   
+"""             
