@@ -752,4 +752,159 @@ Success
 Details
 Runtime: 44 ms, faster than 85.00% of Python3 online submissions for Find Peak Element.
 Memory Usage: 13.7 MB, less than 97.65% of Python3 online submissions for Find Peak Element.   
-"""             
+"""    
+
+# Problem - Reverse String - Easy
+class Solution:
+    def reverseString(self, s: List[str]) -> None:
+        """
+        Do not return anything, modify s in-place instead.
+        """
+        
+        lim = int(len(s)/2)
+        for i in range(lim):
+            r = len(s) - 1 - i
+            temp = s[r]
+            s[r] = s[i]
+            s[i] = temp
+            
+""" Results:
+Success
+Details
+Runtime: 216 ms, faster than 58.81% of Python3 online submissions for Reverse String.
+Memory Usage: 18.3 MB, less than 38.75% of Python3 online submissions for Reverse String.            
+""" 
+
+# Problem - Letter combinations of a phone number - 
+class Solution:
+    def letterCombinations(self, digits: str) -> List[str]:
+        d = dict()
+        d['2'] = "abc"
+        d['3'] = "def"
+        d['4'] = "ghi"
+        d['5'] = "jkl"
+        d['6'] = "mno"
+        d['7'] = "pqrs"
+        d['8'] = "tuv"
+        d['9'] = "wxyz"
+        
+        l = list()
+        m = list()
+        for i,a in enumerate(digits):
+            if i == 0:
+                for j in d[a]:
+                    l.append(j)
+                    
+            else:
+                for j in l:
+                    for k in d[a]:
+                        m.append(j+k)
+                l = m
+                m = list()
+        return l        
+
+"""
+Success
+Details
+Runtime: 28 ms, faster than 83.40% of Python3 online submissions for Letter Combinations of a Phone Number.
+Memory Usage: 13.8 MB, less than 63.98% of Python3 online submissions for Letter Combinations of a Phone Number.   
+"""
+
+# Problem - Implement strStr():
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        if needle == "":
+            return 0
+        if len(haystack) == 0:
+            return -1
+        l1 = len(needle)
+        l2 = len(haystack)
+        if l2 < l1:
+            return -1
+        if l2 == l1:
+            if needle == haystack:
+                return 0
+            else:
+                return -1
+        maxind = l2 - l1 + 1
+        for i in range(maxind):
+            if haystack[i:i+l1] == needle:
+                return i
+        return -1    
+
+"""
+Success
+Details
+Runtime: 20 ms, faster than 99.28% of Python3 online submissions for Implement strStr().
+Memory Usage: 14.1 MB, less than 30.22% of Python3 online submissions for Implement strStr().
+"""
+
+# Problem - Search a 2d Matrix - 
+class Solution:
+    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+        if len(matrix) == 0:
+            return False
+        if len(matrix) == 1 and len(matrix[0]) == 0:
+            return False
+        
+        numrows = len(matrix)
+        numcols = len(matrix[0]) 
+        
+        row = 0
+        for i in range(numrows):
+            if target >= matrix[i][0] and target <= matrix[i][numcols-1]:
+                for j in range(numcols):
+                     if matrix[i][j] == target:
+                            return True
+                        
+                
+        return False     
+            
+"""    
+Success
+Details
+Runtime: 72 ms, faster than 61.37% of Python3 online submissions for Search a 2D Matrix.
+Memory Usage: 15.9 MB, less than 27.66% of Python3 online submissions for Search a 2D Matrix.
+"""
+
+#Problem - Single Number - easy
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+        d = dict()
+        for i in range (len(nums)):
+            if not nums[i] in d:
+                d[nums[i]] = 1
+            else:
+                d[nums[i]] += 1
+        for k,v in d.items():
+            if v == 1:
+                return k
+
+ """
+ Success
+Details
+Runtime: 92 ms, faster than 68.73% of Python3 online submissions for Single Number.
+Memory Usage: 16.3 MB, less than 64.83% of Python3 online submissions for Single Number.
+"""        
+
+#Problem - Single Number II - 
+class Solution:
+    def singleNumber(self, nums: List[int]) -> int:
+    
+        d = dict()
+        for i in range (len(nums)):
+            if not nums[i] in d:
+                d[nums[i]] = 1
+            else:
+                if d[nums[i]] == 1:
+                    d[nums[i]] += 1
+        for k,v in d.items():
+            if v == 1:
+                return k
+            
+""" 
+Success
+Details
+Runtime: 60 ms, faster than 63.91% of Python3 online submissions for Single Number II.
+Memory Usage: 15.6 MB, less than 21.25% of Python3 online submissions for Single Number II.
+"""            
