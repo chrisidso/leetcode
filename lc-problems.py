@@ -907,4 +907,178 @@ Success
 Details
 Runtime: 60 ms, faster than 63.91% of Python3 online submissions for Single Number II.
 Memory Usage: 15.6 MB, less than 21.25% of Python3 online submissions for Single Number II.
-"""            
+"""     
+
+#Problem 2Sum II Imput array is sorted
+class Solution:
+    def twoSum(self, numbers: List[int], target: int) -> List[int]:
+        if len(numbers) < 2:
+            return [0,0]
+        
+        l = 0
+        r = len(numbers) -1
+        result = list()
+        while not l == r:
+            if numbers[l] + numbers[r] == target:
+                result.append(l+1)
+                result.append(r+1)
+                return result
+            if numbers[l] + numbers[r] > target:
+                r -= 1
+            if numbers[l] + numbers[r] < target:
+                l += 1
+        
+        return [0,0]
+    
+"""
+Success
+Details
+Runtime: 68 ms, faster than 68.49% of Python3 online submissions for Two Sum II - Input array is sorted.
+Memory Usage: 14.4 MB, less than 16.95% of Python3 online submissions for Two Sum II - Input array is sorted.
+"""
+
+#Problem:  Majority Element
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        d = dict()
+        for i in range(len(nums)):
+            if not nums[i] in d.keys():
+                d[nums[i]] = 1
+            else:
+                d[nums[i]] += 1
+        max = 0        
+        for v in d.values():
+            if v > max:
+                max = v
+        
+        for k,v in d.items():
+            if v == max:
+                return k
+
+"""
+Success
+Details
+Runtime: 184 ms, faster than 63.15% of Python3 online submissions for Majority Element.
+Memory Usage: 15.2 MB, less than 65.16% of Python3 online submissions for Majority Element.
+"""  
+
+# Problem:  Majority Element II
+class Solution:
+    def majorityElement(self, nums: List[int]) -> List[int]:
+        d = dict()
+        for i in range(len(nums)):
+            if not nums[i] in d.keys():
+                d[nums[i]] = 1
+            else:
+                d[nums[i]] += 1
+        
+        min = int(len(nums)/3)
+        l = list()
+        
+        for k,v in d.items():
+            if v > min:
+                l.append(k)
+                
+        return l        
+        
+"""
+Success
+Details
+Runtime: 124 ms, faster than 76.09% of Python3 online submissions for Majority Element II.
+Memory Usage: 15 MB, less than 43.76% of Python3 online submissions for Majority Element II.
+"""      
+
+# Problem - Contains duplicate
+class Solution:
+    def containsDuplicate(self, nums: List[int]) -> bool:
+        d = dict()
+        for i in range(len(nums)):
+            if not nums[i] in d.keys():
+                d[nums[i]] = 1
+            else:
+                return True
+            
+        return False        
+
+"""
+Success
+Details
+Runtime: 124 ms, faster than 88.60% of Python3 online submissions for Contains Duplicate.
+Memory Usage: 20.1 MB, less than 24.85% of Python3 online submissions for Contains Duplicate.
+"""       
+
+#Problem - Best Time to buy and sell Stock - easy
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if len(prices) < 2:
+            return 0
+        if len(prices) == 2:
+            if prices[0] < prices[1]:
+                return prices[1] - prices[0]
+            else:
+                return 0
+        
+        profit = 0
+        max_profit = 0     
+        min_price = prices[0]
+            
+        for i in range(len(prices)-1):
+            min_price = min(min_price, prices[i])
+            max_price = max(prices[i+1:])
+            profit = max_price - min_price
+            max_profit = max(profit, max_profit)
+             
+            if max_profit < 0:
+                return 0
+            
+        return max_profit           
+
+"""
+Results:
+   Success
+Details
+Runtime: 7076 ms, faster than 5.01% of Python3 online submissions for Best Time to Buy and Sell Stock.
+Memory Usage: 15.2 MB, less than 14.40% of Python3 online submissions for Best Time to Buy and Sell Stock.
+"""
+
+#Problem - Pascal's Triangle - easy
+class Solution:
+    def generate(self, numRows: int) -> List[List[int]]:
+        result = list()
+        
+        if numRows <= 0:
+            return result
+        if numRows == 1:
+            result.append([1])
+            return result
+        if numRows == 2:
+            result.append([1])
+            result.append([1,1])
+            return result
+        
+        result.append([1])
+        result.append([1,1])
+        i = 1
+        
+        j = 3
+        while j <=numRows:
+            temp = list()
+            numPairs = len(result[i]) - 1
+            temp.append(1)
+            for k in range(numPairs):
+                temp.append(result[i][k] + result[i][k+1])
+            temp.append(1)                
+            result.append(temp)
+            i += 1
+            j += 1
+            
+        return result    
+
+"""
+Results:
+       Success
+Details
+Runtime: 28 ms, faster than 81.19% of Python3 online submissions for Pascal's Triangle.
+Memory Usage: 13.6 MB, less than 99.34% of Python3 online submissions for Pascal's Triangle.
+"""
+ 
